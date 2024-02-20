@@ -1,6 +1,4 @@
 import os 
-from pathlib import Path
-import shutil
 from functions import is_audio, is_image, is_video, is_screenshot, transfer
 
 # Change current directory to the target directory
@@ -14,19 +12,16 @@ except FileNotFoundError:
 files = [fl for fl in os.listdir() if os.path.isfile(fl)]
 
 # Create folders and move files
-try:
-    for file in files:
-        if is_audio(file):
-            transfer('Audios', file)
-        elif is_video(file):
-            transfer('Videos', file)
-        elif is_image(file):
-            if is_screenshot(file):
-                transfer('Screenshots', file)
-            else:
-                transfer('Images', file)
-except shutil.Error as err:
-    print(err)
+for file in files:
+    if is_audio(file):
+        transfer('Audios', file)
+    elif is_video(file):
+        transfer('Videos', file)
+    elif is_image(file):
+        if is_screenshot(file):
+            transfer('Screenshots', file)
+        else:
+            transfer('Images', file)
 
 # print(os.path.join('usr', 'bin', 'spam'))
 # print(Path('usr').joinpath('bin').joinpath('spam'))

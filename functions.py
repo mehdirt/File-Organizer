@@ -29,7 +29,7 @@ def is_screenshot(file: str) -> bool:
     return file.suffix in folder_file_maps['Videos'] and 'screenshot' in file.stem.lower()
 
 def transfer(folder_name: str, file: str) -> None:
-    """Create the folder and transfer the file into it."""
+    """Create a folder and transfer the file into it."""
 
     path = Path(folder_name)
     # Check if the file exist in the folder
