@@ -4,9 +4,9 @@ folder_file_maps = {
               ".flac", ".flv", ".m4a", ".m4b", ".m4p",
               ".mp3", ".mpga", ".ogg", ".oga", ".mogg",
               ".opus", ".qcp", ".tta", ".voc", ".wav",
-              ".wma", ".wv"),
+              ".wma", ".wv",),
     'Videos': (".webm", ".MTS", ".M2TS", ".TS", ".mov",
-               ".mp4", ".m4p", ".m4v", ".mxf"),
+               ".mp4", ".m4p", ".m4v", ".mxf", ".wmv",),
     'Images': (".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png",
-               ".gif", ".webp", ".svg", ".apng", ".avif"),
+               ".gif", ".webp", ".svg", ".apng", ".avif",),
 }
