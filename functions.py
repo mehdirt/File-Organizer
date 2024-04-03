@@ -4,38 +4,30 @@ import shutil
 from utils import folder_file_maps
 
 
-def is_audio(file: str) -> bool:
-    """Return True if the file is an audio."""
+def get_file_type(file: str) -> str: #! New
+    """Return corresponding folder name to the file."""
     
-    file = Path(file)
-    return file.suffix in folder_file_maps['Audios']
-
-def is_video(file: str) -> bool:
-    """Return True if the file is a video."""
-    
-    file = Path(file)
-    return file.suffix in folder_file_maps['Videos']
-
-def is_image(file: str) -> bool:
-    """Return True if the file is an image."""
-    
-    file = Path(file)
-    return file.suffix in folder_file_maps['Images']
-
-def is_screenshot(file: str) -> bool:
-    """Return True if the file is a screenshot."""
-
-    file = Path(file)
-    return file.suffix in folder_file_maps['Videos'] and 'screenshot' in file.stem.lower()
+    file_extension = Path(file).suffix
+    for key in folder_file_maps:
+        if file_extension in folder_file_maps[key]:
+            return key
+    raise Exception("This type of file is not supported!")
 
 def transfer(folder_name: str, file: str) -> None:
     """Create a folder and transfer the file into it."""
 
     path = Path(folder_name)
-    # Check if the file exist in the folder
+    # Check if the file exists in the folder
     if not path.joinpath(file).is_file():
         path.mkdir(exist_ok=True)
-        shutil.move(file, f"./{folder_name}")
+        shutil.move(file, path.absolute())
     else:
         # Remove the file if it already exists
         os.remove(file)
+
+def add_new_item(folder_name: str, file_ext: str) -> None: #! New
+    """Add new extension to the given folder name."""
+    
+    folder_file_maps[folder_name].add(file_ext)
+    print("Done!")
+
