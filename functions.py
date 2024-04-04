@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import shutil
-from utils import folder_file_maps
+from utils import folder_file_map
 
 
 def organize():
@@ -18,7 +18,6 @@ def organize():
             folder = get_file_type(file)
         except Exception as err:
             print(err)
-            print("Add the extinsion along with the related folder name using option-2, then reorganize.")
             continue
         # Moving the file into related folder
         transfer(folder, file)
@@ -38,10 +37,10 @@ def get_file_type(file: str) -> str:
     """Return corresponding folder name to the file."""
     
     file_extension = Path(file).suffix
-    for key in folder_file_maps:
-        if file_extension in folder_file_maps[key]:
+    for key in folder_file_map:
+        if file_extension in folder_file_map[key]:
             return key
-    raise Exception(f"'{file_extension}' files are not supported!")
+    raise Exception(f"'{file_extension}' files are not supported!\nAdd the extinsion using 2nd option, then reorganize.")
 
 def transfer(folder_name: str, file: str) -> None:
     """Create a folder and transfer the file into it."""
@@ -57,7 +56,13 @@ def transfer(folder_name: str, file: str) -> None:
 
 def add_new_item(folder_name: str, file_ext: str) -> None:
     """Add new extension to the given folder name."""
-    
-    folder_file_maps[folder_name].add(file_ext)
+
+    folder_name, file_ext = folder_name.strip(), file_ext.strip()
+
+    if folder_name in folder_file_map:
+        folder_file_map[folder_name].add(file_ext)
+    else:
+        folder_file_map[folder_name] = set()
+        folder_file_map[folder_name].add(file_ext)
     print("Done!")
 

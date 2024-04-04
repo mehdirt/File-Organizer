@@ -1,4 +1,4 @@
-folder_file_maps = {
+folder_file_map = {
     'Audios': {".3ga", ".aac", ".ac3", ".aif", ".aiff",
               ".alac", ".amr", ".ape", ".au", ".dss",
               ".flac", ".flv", ".m4a", ".m4b", ".m4p",
