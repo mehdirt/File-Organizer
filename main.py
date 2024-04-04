@@ -1,8 +1,7 @@
 import time
-from functions import organize, add_new_item
+from functions import organize, add_new_item, show_map
 
 #TODO: Make the printing better
-#TODO: Add the 3rd option
 
 def main() -> None:
 
@@ -16,8 +15,10 @@ def main() -> None:
         if option == 1:
             organize()
         elif option == 2:
-            fldr_name, ext = input("Enter a folder name and a new extension to add (Example: Audios, mp3 ): ").split(',')
-            add_new_item(fldr_name, ext) #FIXME
+            fldr_name, ext = input("Enter a folder name and a new extension to add (Example: Audios, .mp3 ): ").split(',')
+            add_new_item(fldr_name, ext)
+        elif option == 3:
+            show_map()
         elif option == 4:
             print("Good Bye 👋")
             time.sleep(1.25)
